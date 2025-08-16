@@ -17,7 +17,6 @@ public sealed class MainViewModel : INotifyPropertyChanged
 {
     private readonly DataDragonService _ddragon;
     private readonly ICounterProvider _counterProvider;
-    private readonly CounterManagerService _counterManager;
     private IReadOnlyList<Champion> _champions = Array.Empty<Champion>();
     private Champion? _currentChampion;
 
@@ -79,11 +78,10 @@ public sealed class MainViewModel : INotifyPropertyChanged
     private void OnPropertyChanged([CallerMemberName] string? name = null)
         => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
 
-    public MainViewModel(DataDragonService ddragon, ICounterProvider counterProvider, CounterManagerService counterManager)
+    public MainViewModel(DataDragonService ddragon, ICounterProvider counterProvider)
     {
         _ddragon = ddragon;
         _counterProvider = counterProvider;
-        _counterManager = counterManager;
 
         SearchCommand = new RelayCommand(async _ => await SearchAsync());
         AddCounterCommand = new RelayCommand(async _ => await AddCounterAsync(), _ => _currentChampion is not null);
@@ -155,7 +153,7 @@ public sealed class MainViewModel : INotifyPropertyChanged
             Detail = EditDetail
         };
 
-        await _counterManager.AddCounterAsync(_currentChampion.Id, newEntry);
+        await _counterProvider.AddCounterAsync(_currentChampion.Id, newEntry);
         await LoadCountersAsync(_currentChampion); // Refresh
     }
 
@@ -177,7 +175,7 @@ public sealed class MainViewModel : INotifyPropertyChanged
             Detail = EditDetail
         };
 
-        await _counterManager.UpdateCounterAsync(_currentChampion.Id, SelectedCounter.OpponentName, updatedEntry);
+        await _counterProvider.UpdateCounterAsync(_currentChampion.Id, SelectedCounter.OpponentName, updatedEntry);
         await LoadCountersAsync(_currentChampion); // Refresh
     }
 
@@ -185,7 +183,7 @@ public sealed class MainViewModel : INotifyPropertyChanged
     {
         if (_currentChampion is null || SelectedCounter is null) return;
 
-        await _counterManager.DeleteCounterAsync(_currentChampion.Id, SelectedCounter.OpponentName);
+        await _counterProvider.DeleteCounterAsync(_currentChampion.Id, SelectedCounter.OpponentName);
         await LoadCountersAsync(_currentChampion); // Refresh
     }
 }

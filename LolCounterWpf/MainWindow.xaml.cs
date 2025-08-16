@@ -10,8 +10,7 @@ public partial class MainWindow : Window
     {
         InitializeComponent();
         var ddragon = new DataDragonService();
-        var counterProvider = new LocalJsonCounterProvider("assets/counters.json");
-        var counterManager = new CounterManagerService("assets/counters.json");
-        DataContext = new MainViewModel(ddragon, counterProvider, counterManager);
+        var counterService = new CounterService("assets/counters.json");
+        DataContext = new MainViewModel(ddragon, counterService);
     }
 }

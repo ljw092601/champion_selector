@@ -1,4 +1,3 @@
-
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -9,36 +8,52 @@ using LolCounterWpf.Models;
 
 namespace LolCounterWpf.Services;
 
-public class CounterManagerService
+public class CounterService : ICounterProvider
 {
     private readonly string _path;
+    private Dictionary<string, List<CounterEntry>>? _cache;
 
-    public CounterManagerService(string path)
+    public CounterService(string path)
     {
         _path = path;
     }
 
-    private async Task<Dictionary<string, List<CounterEntry>>> ReadDataAsync()
+    private async Task EnsureCacheAsync()
     {
+        if (_cache is not null) return;
+
         if (!File.Exists(_path))
         {
-            return new Dictionary<string, List<CounterEntry>>(StringComparer.OrdinalIgnoreCase);
+            _cache = new Dictionary<string, List<CounterEntry>>(StringComparer.OrdinalIgnoreCase);
+            return;
         }
 
         using var fs = File.OpenRead(_path);
-        return await JsonSerializer.DeserializeAsync<Dictionary<string, List<CounterEntry>>>(fs)
-               ?? new Dictionary<string, List<CounterEntry>>(StringComparer.OrdinalIgnoreCase);
+        _cache = await JsonSerializer.DeserializeAsync<Dictionary<string, List<CounterEntry>>>(fs)
+                 ?? new Dictionary<string, List<CounterEntry>>(StringComparer.OrdinalIgnoreCase);
     }
 
     private async Task WriteDataAsync(Dictionary<string, List<CounterEntry>> data)
     {
         using var fs = File.Create(_path);
         await JsonSerializer.SerializeAsync(fs, data, new JsonSerializerOptions { WriteIndented = true });
+        _cache = null; // Invalidate cache
+    }
+
+    public async Task<IReadOnlyList<CounterEntry>> GetCountersAsync(string championIdOrName)
+    {
+        await EnsureCacheAsync();
+        if (_cache!.TryGetValue(championIdOrName, out var list)) return list;
+
+        var alt = _cache.Keys.FirstOrDefault(k => string.Equals(k, championIdOrName, StringComparison.OrdinalIgnoreCase));
+        if (alt is not null && _cache.TryGetValue(alt, out list)) return list;
+        return Array.Empty<CounterEntry>();
     }
 
     public async Task AddCounterAsync(string championId, CounterEntry newEntry)
     {
-        var data = await ReadDataAsync();
+        await EnsureCacheAsync();
+        var data = new Dictionary<string, List<CounterEntry>>(_cache!, StringComparer.OrdinalIgnoreCase);
         if (!data.TryGetValue(championId, out var entries))
         {
             entries = new List<CounterEntry>();
@@ -50,7 +65,8 @@ public class CounterManagerService
 
     public async Task UpdateCounterAsync(string championId, string originalOpponentName, CounterEntry updatedEntry)
     {
-        var data = await ReadDataAsync();
+        await EnsureCacheAsync();
+        var data = new Dictionary<string, List<CounterEntry>>(_cache!, StringComparer.OrdinalIgnoreCase);
         if (data.TryGetValue(championId, out var entries))
         {
             var index = entries.FindIndex(e => e.OpponentName == originalOpponentName);
@@ -62,11 +78,10 @@ public class CounterManagerService
         }
     }
 
-
-
     public async Task DeleteCounterAsync(string championId, string opponentName)
     {
-        var data = await ReadDataAsync();
+        await EnsureCacheAsync();
+        var data = new Dictionary<string, List<CounterEntry>>(_cache!, StringComparer.OrdinalIgnoreCase);
         if (data.TryGetValue(championId, out var entries))
         {
             var entryToRemove = entries.FirstOrDefault(e => e.OpponentName == opponentName);
