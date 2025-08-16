@@ -1,0 +1,114 @@
+﻿<Window x:Class="LolCounterWpf.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LolCounterWpf"
+        mc:Ignorable="d"
+        Title="LoL Counter" Height="620" Width="920" MinHeight="520" MinWidth="820">
+    <DockPanel>
+        <!-- Header/Search -->
+        <Border DockPanel.Dock="Top" Background="#111827" Padding="16">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Left Panel: Search and Suggestions -->
+                <StackPanel Grid.Column="0">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <!-- 입력 -->
+                        <TextBox Grid.Row="0" Grid.Column="0" Width="360" Height="32" VerticalAlignment="Center"
+                                 Margin="0" Padding="8"
+                                 Text="{Binding Query, UpdateSourceTrigger=PropertyChanged}">
+                            <TextBox.InputBindings>
+                                <KeyBinding Command="{Binding SearchCommand}" Key="Enter"/>
+                            </TextBox.InputBindings>
+                        </TextBox>
+                        <Button Grid.Row="0" Grid.Column="1" Content="검색" Width="80" Height="32"
+                                Command="{Binding SearchCommand}" Margin="8,0,0,0"/>
+
+                        <!-- 제안 목록: 입력 바로 아래에 배치 -->
+                        <ListBox Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
+                                 Width="360" HorizontalAlignment="Left"
+                                 ItemsSource="{Binding Suggestions}"
+                                 DisplayMemberPath="Name"
+                                 SelectedItem="{Binding SelectedSuggestion, Mode=TwoWay}"
+                                 MaxHeight="180" Margin="0,6,0,0"
+                                 Visibility="{Binding SuggestionsVisible}"
+                                 Background="#1F2937" Foreground="White" BorderBrush="#374151"/>
+                    </Grid>
+                </StackPanel>
+
+                <!-- Right Panel: Edit Controls -->
+                <GroupBox Grid.Column="1" Header="카운터 관리" Margin="20,0,0,0" Foreground="White" BorderBrush="#374151">
+                    <StackPanel>
+                        <TextBlock Text="상대 챔피언 이름" Foreground="White" Margin="0,0,0,4"/>
+                        <TextBox Text="{Binding EditOpponentName, UpdateSourceTrigger=PropertyChanged}" Height="32" Padding="8"/>
+
+                        <TextBlock Text="설명" Foreground="White" Margin="0,8,0,4"/>
+                        <TextBox Text="{Binding EditDetail, UpdateSourceTrigger=PropertyChanged}" Height="32" Padding="8"/>
+
+                        <StackPanel Orientation="Horizontal" Margin="0,12,0,0">
+                            <Button Content="추가" Command="{Binding AddCounterCommand}" Width="80" Height="32"/>
+                            <Button Content="수정" Command="{Binding UpdateCounterCommand}" Width="80" Height="32" Margin="8,0,0,0"/>
+                            <Button Content="삭제" Command="{Binding DeleteCounterCommand}" Width="80" Height="32" Margin="8,0,0,0"/>
+                        </StackPanel>
+                    </StackPanel>
+                </GroupBox>
+            </Grid>
+        </Border>
+
+        <!-- Content -->
+        <ScrollViewer>
+            <StackPanel Margin="16">
+                <TextBlock FontSize="18" FontWeight="Bold" Text="{Binding Title}" Margin="0,0,0,12"/>
+                <ListBox ItemsSource="{Binding Counters}" SelectedItem="{Binding SelectedCounter}"
+                         Background="Transparent" BorderThickness="0"
+                         ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel IsItemsHost="True"/>
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Border Width="180" Margin="6" Padding="10" CornerRadius="10"
+                                    Background="#111827" BorderBrush="#374151" BorderThickness="1">
+                                <StackPanel>
+                                    <Image Width="128" Height="128" Stretch="UniformToFill"
+                                           Source="{Binding ImageUrl}"/>
+                                    <TextBlock Margin="0,8,0,0" FontWeight="Bold" Foreground="White"
+                                               Text="{Binding OpponentName}"/>
+                                    <TextBlock Foreground="#D1D5DB" TextWrapping="Wrap"
+                                               Text="{Binding Detail}"/>
+                                </StackPanel>
+                            </Border>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                    <ListBox.ItemContainerStyle>
+                        <Style TargetType="ListBoxItem">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="ListBoxItem">
+                                        <ContentPresenter/>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </ListBox.ItemContainerStyle>
+                </ListBox>
+            </StackPanel>
+        </ScrollViewer>
+    </DockPanel>
+</Window>

@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34511.84
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LolCounterWpf", "LolCounterWpf\LolCounterWpf.csproj", "{62C30039-AEE5-43BD-BD46-B5BEBD52BEAB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{62C30039-AEE5-43BD-BD46-B5BEBD52BEAB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62C30039-AEE5-43BD-BD46-B5BEBD52BEAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62C30039-AEE5-43BD-BD46-B5BEBD52BEAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62C30039-AEE5-43BD-BD46-B5BEBD52BEAB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6545996C-9CC7-421E-BD2B-F1F3DF93BAE3}
+	EndGlobalSection
+EndGlobal

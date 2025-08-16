@@ -1,0 +1,29 @@
+{
+  "Garen": [
+    {
+      "OpponentId": "Darius",
+      "OpponentName": "다리우스",
+      "WinRateDelta": -5.1
+    },
+    {
+      "OpponentId": "Fiora",
+      "OpponentName": "피오라",
+      "WinRateDelta": -3.8
+    },
+    {
+      "OpponentId": "Teemo",
+      "OpponentName": "티모",
+      "WinRateDelta": -3.2
+    },
+    {
+      "OpponentId": "Quinn",
+      "OpponentName": "퀸",
+      "WinRateDelta": -2.7
+    },
+    {
+      "OpponentId": "Vayne",
+      "OpponentName": "베인",
+      "WinRateDelta": -2.1
+    }
+  ]
+}
