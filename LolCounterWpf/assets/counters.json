@@ -3,27 +3,214 @@
     {
       "OpponentId": "Darius",
       "OpponentName": "다리우스",
-      "WinRateDelta": -5.1
+      "Detail": "어려운 상대"
     },
     {
       "OpponentId": "Fiora",
       "OpponentName": "피오라",
-      "WinRateDelta": -3.8
+      "Detail": "어려운 상대"
     },
     {
       "OpponentId": "Teemo",
       "OpponentName": "티모",
-      "WinRateDelta": -3.2
+      "Detail": "어려운 상대"
     },
     {
       "OpponentId": "Quinn",
       "OpponentName": "퀸",
-      "WinRateDelta": -2.7
+      "Detail": "어려운 상대"
     },
     {
       "OpponentId": "Vayne",
       "OpponentName": "베인",
-      "WinRateDelta": -2.1
+      "Detail": "어려운 상대"
+    }
+  ],
+  "Aatrox": [
+    {
+      "OpponentId": "Fiora",
+      "OpponentName": "피오라",
+      "Detail": "강력한 카운터"
+    },
+    {
+      "OpponentId": "Irelia",
+      "OpponentName": "이렐리아",
+      "Detail": "강력한 카운터"
+    },
+    {
+      "OpponentId": "Kled",
+      "OpponentName": "클레드",
+      "Detail": "강력한 카운터"
+    }
+  ],
+  "Ahri": [
+    {
+      "OpponentId": "Yasuo",
+      "OpponentName": "야스오",
+      "Detail": "강력한 카운터"
+    },
+    {
+      "OpponentId": "Fizz",
+      "OpponentName": "피즈",
+      "Detail": "강력한 카운터"
+    },
+    {
+      "OpponentId": "Leblanc",
+      "OpponentName": "르블랑",
+      "Detail": "강력한 카운터"
+    }
+  ],
+  "Akali": [
+    {
+      "OpponentId": "Galio",
+      "OpponentName": "갈리오",
+      "Detail": "강력한 카운터"
+    },
+    {
+      "OpponentId": "LeeSin",
+      "OpponentName": "리 신",
+      "Detail": "강력한 카운터"
+    },
+    {
+      "OpponentId": "Lissandra",
+      "OpponentName": "리산드라",
+      "Detail": "강력한 카운터"
+    }
+  ],
+  "Akshan": [
+    {
+      "OpponentId": "Irelia",
+      "OpponentName": "이렐리아",
+      "Detail": "강력한 카운터"
+    },
+    {
+      "OpponentId": "Cassiopeia",
+      "OpponentName": "카시오페아",
+      "Detail": "강력한 카운터"
+    },
+    {
+      "OpponentId": "Pantheon",
+      "OpponentName": "판테온",
+      "Detail": "강력한 카운터"
+    }
+  ],
+  "Alistar": [
+    {
+      "OpponentId": "Janna",
+      "OpponentName": "잔나",
+      "Detail": "강력한 카운터"
+    },
+    {
+      "OpponentId": "Morgana",
+      "OpponentName": "모르가나",
+      "Detail": "강력한 카운터"
+    },
+    {
+      "OpponentId": "Lulu",
+      "OpponentName": "룰루",
+      "Detail": "강력한 카운터"
+    }
+  ],
+  "Amumu": [
+    {
+      "OpponentId": "Olaf",
+      "OpponentName": "올라프",
+      "Detail": "강력한 카운터"
+    },
+    {
+      "OpponentId": "Graves",
+      "OpponentName": "그레이브즈",
+      "Detail": "강력한 카운터"
+    },
+    {
+      "OpponentId": "Mordekaiser",
+      "OpponentName": "모데카이저",
+      "Detail": "강력한 카운터"
+    }
+  ],
+  "Anivia": [
+    {
+      "OpponentId": "Fizz",
+      "OpponentName": "피즈",
+      "Detail": "강력한 카운터"
+    },
+    {
+      "OpponentId": "Leblanc",
+      "OpponentName": "르블랑",
+      "Detail": "강력한 카운터"
+    },
+    {
+      "OpponentId": "Kassadin",
+      "OpponentName": "카사딘",
+      "Detail": "강력한 카운터"
+    }
+  ],
+  "Annie": [
+    {
+      "OpponentId": "Orianna",
+      "OpponentName": "오리아나",
+      "Detail": "강력한 카운터"
+    },
+    {
+      "OpponentId": "Lux",
+      "OpponentName": "럭스",
+      "Detail": "강력한 카운터"
+    },
+    {
+      "OpponentId": "Ahri",
+      "OpponentName": "아리",
+      "Detail": "강력한 카운터"
+    }
+  ],
+  "Aphelios": [
+    {
+      "OpponentId": "Nilah",
+      "OpponentName": "닐라",
+      "Detail": "강력한 카운터"
+    },
+    {
+      "OpponentId": "Jinx",
+      "OpponentName": "징크스",
+      "Detail": "강력한 카운터"
+    },
+    {
+      "OpponentId": "KogMaw",
+      "OpponentName": "코그모",
+      "Detail": "강력한 카운터"
+    }
+  ],
+  "Ashe": [
+    {
+      "OpponentId": "KogMaw",
+      "OpponentName": "코그모",
+      "Detail": "강력한 카운터"
+    },
+    {
+      "OpponentId": "Vayne",
+      "OpponentName": "베인",
+      "Detail": "강력한 카운터"
+    },
+    {
+      "OpponentId": "Lucian",
+      "OpponentName": "루시안",
+      "Detail": "강력한 카운터"
+    }
+  ],
+  "AurelionSol": [
+    {
+      "OpponentId": "Fizz",
+      "OpponentName": "피즈",
+      "Detail": "강력한 카운터"
+    },
+    {
+      "OpponentId": "Akali",
+      "OpponentName": "아칼리",
+      "Detail": "강력한 카운터"
+    },
+    {
+      "OpponentId": "Katarina",
+      "OpponentName": "카타리나",
+      "Detail": "강력한 카운터"
     }
   ]
 }
