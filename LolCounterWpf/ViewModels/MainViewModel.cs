@@ -146,6 +146,12 @@ public sealed class MainViewModel : INotifyPropertyChanged
             return;
         }
 
+        if (Counters.Any(c => c.OpponentName.Equals(opponent.Name, StringComparison.OrdinalIgnoreCase)))
+        {
+            MessageBox.Show("이미 카운터로 등록된 챔피언입니다.", "중복 오류", MessageBoxButton.OK, MessageBoxImage.Error);
+            return;
+        }
+
         var newEntry = new CounterEntry
         {
             OpponentId = opponent.Id,
